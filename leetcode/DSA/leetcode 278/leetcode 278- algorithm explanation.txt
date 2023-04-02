@@ -1,0 +1,17 @@
+#leetcode 278. First Bad Version:
+You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad.
+
+Suppose you have n versions [1, 2, ..., n] and you want to find out the first bad one, which causes all the following ones to be bad.
+
+You are given an API bool isBadVersion(version) which returns whether version is bad. Implement a function to find the first bad version. You should minimize the number of calls to the API.
+
+Binary Search Approach :
+-Define left and right pointers as the first and last position of the array respectively.
+-In each iteration of the while loop the midpoint of the array is calculated by taking the average of the two pointers.
+-isBadVersion() function is called at each iteration to check whether the midpoint's value is true or false.
+-If isBadVersion() returns True then the right pointer is set at the midpoint. This is because if the product at the midpoint is bad that means all the products after the midpoint are bad but products before the midpoint can either be good or bad so, the lower half of the array needs to be searched.
+-If isBadVersion() returns False then the left pointer is set at (midpoint + 1). This is because if the product at the midpoint is good that means all the products before the midpoint are good but products after the midpoint can either be good or bad so, the upper half of the array needs to be searched.
+-We would continue this until the range is reduced to a single version, which would be the first bad version. The left and right pointers will become equal in this case and the while loop will be terminated.
+-Either the left or right pointer can be returned, both will represent the first bad version.
+
+The code's time complexity is O(log n) since the binary search algorithm is utilized.

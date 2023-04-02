@@ -1,0 +1,10 @@
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        s_l = s.split()
+        res=[]
+        
+        for word in s_l:
+            res.append(word[::-1])
+            res.append(" ")
+        
+        return "".join(res).strip()

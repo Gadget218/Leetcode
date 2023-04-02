@@ -1,0 +1,53 @@
+Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number. Let these two numbers be numbers[index1] and numbers[index2] where 1 <= index1 < index2 <= numbers.length.
+
+
+
+Return the indices of the two numbers, index1, and index2, added by one as an integer array [index1, index2] of length 2.
+
+
+
+The tests are generated such that there is exactly one solution. You may not use the same element twice.
+
+
+
+Your solution must use only constant extra space.
+
+
+
+ 
+
+
+
+Example :
+
+
+
+Input: numbers = [2,4,5,7,11], target = 9
+
+Output: [2,3]
+
+Explanation: The sum of 4 and 5 is 9. Therefore, index1 = 2, index2 = 3. We return [2, 3].
+
+
+
+Brute force approach: The simple way to approach this problem will be to go through the given array twice and find the sum of each pair and return their indices. But this approach's time complexity is O(n^2).
+
+A more efficient way of solving this problem would be two pointer approach.
+
+
+
+Two-pointer approach:
+
+1. Initialize the left and right pointers at the beginning and end of the array.
+
+2. Initialize a while loop to iterate through the array as long as the left pointer is less than the right pointer.
+
+3. Inside the loop, if the sum of values at the left and right pointers is less than the target then the left pointer is incremented by 1.
+
+4. Inside the loop, if the sum of values at the left and right pointers is greater than the target then the right pointer in decremented by 1.
+
+5. If neither of the above two conditions is satisfied in the loop then that means the sum of the values is equal to the target and the indices are returned.
+
+6. If the sum of the values of any pair in the array is not equal to the target then an empty list is returned.
+
+The overall time complexity using the two-pointer approach is O(n) and no extra memory is used so space/memory complexity is O(1).

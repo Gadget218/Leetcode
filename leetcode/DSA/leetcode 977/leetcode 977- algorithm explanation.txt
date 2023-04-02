@@ -1,0 +1,19 @@
+#leetcode 977: Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+Example 1:
+Input: nums = [-4,-1,0,3,10]
+Output: [0,1,9,16,100]
+Explanation: After squaring, the array becomes [16,1,0,9,100].
+After sorting, it becomes [0,1,9,16,100].
+
+A naive way to approach this problem will be to square all the elements of the array first and then sort them, but the overall time complexity of this method is O(n(log n)) which is not efficient, especially compared to the two-pointer approach.
+
+Two-pointer approach:
+-Initialize an empty result list/array and initialize the left and right pointers at the edges of the input array nums.
+-Initialize a while loop, in each iteration of this loop square of the element at the left pointer is compared to the square of the element at the right pointer.
+-If the square of the left pointer element is greater than the square of the right pointer element then the square of the left pointer element is appended to the result list/array and the left pointer will be incremented by 1.
+-If the square of the right pointer element is greater than the square of the left pointer element then the square of the right pointer element is appended to the result list/array and the right pointer will be decremented by 1.
+-The loop will continue to iterate till the left pointer remains less than the right pointer.
+-After the while loop ends, the reverse list of the result is returned to get the output list in non-decreasing order.
+
+The overall time complexity of this approach will be O(n) since each element of the array/list will be visited once.
+The memory complexity is O(n) if the result list is counted as extra memory, if it's not then the memory complexity is O(1).

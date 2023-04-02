@@ -1,0 +1,39 @@
+#leetcode 19: Remove Nth Node From End of List
+
+
+
+Given the head of a linked list, remove the nth node from the end of the list and return its head.
+
+
+
+Example :
+
+Input: head = [1,2,3,4,5], n = 2
+
+Output: [1,2,3,5]
+
+
+
+approach:
+
+1. Initialize a dummy node before the head of the input linked list.
+
+2. The left pointer is assigned at the dummy node.
+
+3. The right pointer needs to be n steps ahead of the head node in the linked list.
+
+4. The right pointer is first assigned at the head node, while the loop is initiated to shift the right pointer n steps forward. At the end of each iteration of the while loop value of n is decremented by 1, the loop will terminate when n=o and the right pointer will be n steps ahead of the head.
+
+ Its time complexity is O(n)
+
+5. A new while loop is initialized that will make the left and right pointer shift to the next node at each iteration. The loop will be terminated once the right pointer is null(it reached one step ahead of the end of the linked list).
+
+Its time complexity will be O(N-n), consider 'N' as the length of the linked list.
+
+6. The pointer of the node at the left pointer is shifted to the point at the node one step ahead of the node that it was originally pointing towards. This removes the target node.
+
+7. Return the linked list that starts after the dummy node.
+
+
+
+The time complexity of the code will be O(N) since the overall time complexity is O(n)+O(N-n). Memory/Space complexity is O(1) since no extra memory was used.

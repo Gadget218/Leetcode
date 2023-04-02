@@ -1,0 +1,23 @@
+3. Longest Substring Without Repeating Characters
+
+Given a string s, find the length of the longest substring without repeating characters.
+
+ 
+
+Example 1:
+
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+
+Sliding Window Approach:
+1.Initialize an empty set 'charSet' to keep track of characters in the current substring.
+2.Initialize the left pointer, it points towards the first character of the array/string.
+3.Initialize a result variable 'res' to keep track of the length of the longest substring without repeating characters.
+4.Initialize r pointer so, it points towards the first chracter of the array/string as well, move the right pointer one step at a time(via for loop) along the array/string.
+5.If a repeating character is found the left pointer is moved ahead one step at a time till there are no repeating characters, characters at left pointer are removed from 'charSet'.
+6.Update the 'charSet' by adding the character at right pointer and update the 'res' variable to contain the longest substring found so far.
+7.This loop will continue till the right pointer reaches the end of the array/string.
+8.Return the 'res', the length of the longest substring without repeating characters after the loop ends.
+
+Both the overall time complexity and space complexity of the code will be O(n).

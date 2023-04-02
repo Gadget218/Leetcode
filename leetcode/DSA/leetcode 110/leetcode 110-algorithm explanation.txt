@@ -1,0 +1,17 @@
+LeetCode #110: Given a binary tree, determine if it is height-balanced.
+A height-balanced binary tree is a binary tree in which the left and right subtrees of each node differ in height by no more than 1.
+
+The approach taken in code:
+-A dfs function is defined which performs the DFS traversal recursively, starting from the root of the binary tree.
+
+-The dfs function takes a node(initially root) of the binary tree as input and returns a list of two values - a boolean value indicating whether the subtree rooted at the given node is balanced or not, and an integer value representing the height of the subtree rooted at the given node.
+
+-At each node, the function computes the height and balance status of the current node based on the heights and balance statuses of its left and right subtrees.
+
+-The height of the current node is computed as the maximum of the heights of its left and right subtrees plus one.
+
+-The dfs function returns the balance status and height of the current node in a list.
+
+-The isBalanced function returns the balance status of the root node, which indicates whether the entire binary tree is balanced or not.
+
+Since, worst case scenario is that each node will be visited at most one time the time complexity is O(n)

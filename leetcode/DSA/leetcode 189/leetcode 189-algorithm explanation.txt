@@ -1,0 +1,49 @@
+#leetcode 189. Rotate Array
+
+Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
+
+ 
+
+Example 1:
+
+Input: nums = [1,2,3,4,5,6,7], k = 3
+
+Output: [5,6,7,1,2,3,4]
+
+Explanation:
+
+rotate 1 step to the right: [7,1,2,3,4,5,6]
+
+rotate 2 steps to the right: [6,7,1,2,3,4,5]
+
+rotate 3 steps to the right: [5,6,7,1,2,3,4]
+
+
+
+Approach: 
+
+-First, the input steps(k) is initialized to the mod of steps(k) by the length of the input array(nums), in case steps are greater or equal to the length of the input array.
+
+-Initialize the left and right pointers as the edges of the input array.
+
+-A helper function is defined that contains a while loop that performs the reversing of the input list within given input parameters.
+
+-The helper function is called to reverse the entire input list by passing the left and right pointers as input. The time complexity of this action is O(n/2).
+
+-The right pointer is initialized as (steps-1), left pointer remains the same.
+
+-The helper function is called again with the updated pointers as input, this will cause the first portion of the list/array to get reversed.
+
+The time complexity of this action is O(k/2).
+
+-The left pointer is initialized to the value of steps, and the right pointer is initialized to the final index of the input array/list.
+
+-The helper function is called again with the updated pointers as input, this will cause the second portion of the list/array to get reversed. The time complexity of this action is O((n-k)/2).
+
+
+
+The overall time complexity of the entire code =O(n/2)+O(k/2)+O((n-k)/2)=O((n+k+n-k)/2)=O(n)
+
+The memory complexity of the code is O(1) since no extra memory is utilized in the code.
+
+#dsa #pythonprogramming 
