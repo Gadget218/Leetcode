@@ -1,0 +1,27 @@
+Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise.
+
+In other words, return true if one of s1's permutations is the substring of s2.
+
+ 
+
+Example 1:
+
+Input: s1 = "ab", s2 = "eidbaooo"
+Output: true
+Explanation: s2 contains one permutation of s1 ("ba").
+Example 2:
+
+Input: s1 = "ab", s2 = "eidboaoo"
+Output: false
+ 
+
+Constraints:
+
+1 <= s1.length, s2.length <= 104
+s1 and s2 consist of lowercase English letters.
+
+The solution uses a sliding window approach to compare the character counts of s1 and s2. It initializes two arrays, s1Count and s2Count, to store the count of characters in s1 and s2. Then, it compares the two arrays to count the number of matches. If the number of matches is equal to 26 (the length of the English alphabet), then s2 contains a permutation of s1.
+
+The code then iterates through s2 using a sliding window. For each window, it adds the count of the character at the right end of the window to s2Count and updates the matches count accordingly. It also removes the count of the character at the left end of the window from s2Count and updates the matches count. Finally, it checks if the matches count is equal to 26 and returns True if it is.
+
+Overall, the code has a time complexity of O(n), where n is the length of s2. This is because it iterates through s2 once and performs constant-time operations for each character. The space complexity is also O(1) because the size of the s1Count and s2Count arrays is fixed at 26, which is independent of the length of the input strings.
