@@ -1,0 +1,32 @@
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
+        # Get the original color of the starting pixel
+        oldColor = image[sr][sc]
+        
+        # If the starting pixel already has the target color, no need to fill
+        if oldColor == newColor:
+            return image
+        
+        # Define a helper function for recursive flood fill
+        def fillHelper(row, col):
+            # If the current pixel is the original color, change it to the target color
+            if image[row][col] == oldColor:
+                image[row][col] = newColor
+                
+                # Check and fill all 4 adjacent pixels recursively
+                if row > 0:
+                    fillHelper(row - 1, col)
+                if row < len(image) - 1:
+                    fillHelper(row + 1, col)
+                if col > 0:
+                    fillHelper(row, col - 1)
+                if col < len(image[0]) - 1:
+                    fillHelper(row, col + 1)
+        
+        # Start flood fill from the starting pixel
+        fillHelper(sr, sc)
+        
+        # Return the updated matrix
+        return image
+        
+        

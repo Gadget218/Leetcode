@@ -1,0 +1,19 @@
+
+
+
+The flood fill algorithm is a recursive approach to changing the color of all connected pixels in a 2D matrix. 
+The inputs to the algorithm are the matrix, a starting pixel, and a target color. 
+The algorithm works by starting at the starting pixel and recursively checking all of its connected neighbors to see if they have the same color as the starting pixel. If they do, the algorithm changes the color of the neighbor pixel and continues to recursively check its connected neighbors. 
+This process continues until all connected pixels with the same original color as the starting pixel have been changed to the target color.
+
+The Python code implements this algorithm using a helper function called fillHelper() that performs the recursive flood fill.
+ The fillHelper() function takes the row and column indices of the current pixel as input and checks if the current pixel has the same color as the starting pixel. 
+If it does, the function changes the color of the pixel to the target color and recursively calls itself on all 4 adjacent pixels (if they exist). 
+The main floodFill() function simply gets the original color of the starting pixel, checks if the starting pixel already has the target color, and then calls fillHelper() to start the flood fill process.
+Finally, the function returns the updated matrix.
+
+The time complexity of the provided code is O(N), where N is the total number of pixels in the input image. 
+This is because the fillHelper() function visits each pixel in the image at most once, and each visit takes constant time (i.e., O(1)).
+
+The space complexity of the provided code is also O(N), due to the use of the call stack during the recursive flood fill process. 
+In the worst case, if all pixels in the image have the same color as the starting pixel, the call stack will have to hold all N recursive calls before any of them return. 
