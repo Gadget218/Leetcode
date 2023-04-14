@@ -1,0 +1,22 @@
+695. Max Area of Island
+
+You are given an m x n binary matrix grid. An island is a group of 1's (representing land) connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.
+
+The area of an island is the number of cells with a value 1 in the island.
+
+Return the maximum area of an island in grid. If there is no island, return 0.
+
+Explanation: 
+
+The function starts by initializing the number of rows and columns of the input grid using len(grid) and len(grid[0]). 
+It also creates an empty set called 'visit' to keep track of the visited cells during the depth-first search (DFS) algorithm.
+
+Next, a helper function called 'dfs' is defined. This function takes in two parameters 'r' and 'c' representing the row and column indices of the cell being visited. If the cell is outside the bounds of the grid or its value is 0 (indicating it is not a part of the island) or it has already been visited, then dfs returns 0. 
+Otherwise, the current cell is marked as visited in the visit set and the DFS algorithm is recursively applied to its neighboring cells (up, down, left, and right) by calling 'dfs' with updated row and column indices. The area of the island is then calculated by summing up the number of connected 1s on the island.
+
+In the main function, 'area' is initialized to 0. The function then loops through each cell in the grid and applies the 'dfs' function to it. 
+The maximum area of the island is stored in the area variable using the built-in max function.
+
+Finally, the function returns the maximum area of an island in the grid.
+
+Both the time and space complexity of the code is O(m*n), where 'm' and 'n' are the numbers of rows and columns of the grid respectively.
