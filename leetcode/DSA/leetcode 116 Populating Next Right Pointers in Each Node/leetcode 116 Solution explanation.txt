@@ -1,0 +1,47 @@
+116. Populating Next Right Pointers in Each Node
+
+You are given a perfect binary tree where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:
+
+struct Node {
+  int val;
+  Node *left;
+  Node *right;
+  Node *next;
+}
+Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
+
+Initially, all next pointers are set to NULL.
+
+ 
+
+Example 1:
+
+
+Input: root = [1,2,3,4,5,6,7]
+Output: [1,#,2,3,#,4,5,6,7,#]
+Explanation: Given the above perfect binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with '#' signifying the end of each level.
+Example 2:
+
+Input: root = []
+Output: []
+ 
+
+Constraints:
+
+The number of nodes in the tree is in the range [0, 212 - 1]
+
+-1000 <= Node.val <= 1000
+
+
+
+Solution Explanation:
+
+The solution uses iterative approach to connect the nodes in the binary tree. It starts by initializing two pointers, cur and nxt, to the root node and the left child of the root node, respectively. Then, it uses a while loop to traverse the tree level by level.
+
+At each level, it first connects the left child of the current node to the right child of the current node. Then, it checks if the current node has a next node, and if it does, it connects the right child of the current node to the left child of the next node.
+
+Finally, it updates the current node to be the next node, and updates the next node to be the left child of the current node. If there is no next node, it updates the current node to be the left child of the current node's parent (i.e., the first node in the next level), and updates the next node to be the left child of the new current node.
+
+The function returns the root node of the binary tree after all nodes have been connected to their next right neighbor.
+
+Overall, the time complexity of this solution is O(n), where n is the number of nodes in the binary tree, since it visits each node once. The space complexity is O(1), since it only uses a constant amount of extra space to store the two pointers.
