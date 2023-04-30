@@ -1,0 +1,35 @@
+994. Rotting Oranges
+
+You are given an m x n grid where each cell can have one of three values:
+
+0 representing an empty cell,
+1 representing a fresh orange, or
+2 representing a rotten orange.
+Every minute, any fresh orange that is 4-directionally adjacent to a rotten orange becomes rotten.
+
+Return the minimum number of minutes that must elapse until no cell has a fresh orange. If this is impossible, return -1.
+
+Solution:
+The given Python code is an implementation of the "Rotting Oranges" problem. This problem is concerned with finding the minimum time required to rot all the fresh oranges in a given grid, with the help of rotten oranges. The grid is represented by a 2D array, where each cell may contain either a 0, 1, or 2. The value 0 represents an empty cell, 1 represents a fresh orange, and 2 represents a rotten orange.
+
+The solution uses a breadth-first search (BFS) algorithm to traverse the grid and find the minimum time required to rot all the fresh oranges. The algorithm maintains a queue of all the rotten oranges at a given time step and continues to process the oranges in the queue until all the fresh oranges have been rotted. The BFS algorithm works by processing the oranges at each time step, and spreading the rot to their adjacent fresh oranges.
+
+Now, let's understand the code in detail:
+
+The solution defines a class named "Solution" that contains a method named "orangesRotting". This method takes a 2D array "grid" as input and returns an integer, which represents the minimum time required to rot all the fresh oranges.
+
+The solution initializes a deque "q" to maintain the queue of rotten oranges and two integer variables "time" and "fresh". "time" represents the current time step, and "fresh" represents the count of fresh oranges present in the grid.
+
+The solution then iterates over each cell of the grid and checks if it contains a fresh or rotten orange. If the cell contains a fresh orange, "fresh" count is increased by 1, and if it contains a rotten orange, it is added to the queue "q".
+
+The solution then defines a list "directions" that contains the possible directions in which the rot can spread from one orange to another. The directions are represented by a pair of row and column offsets.
+
+The while loop in the code runs until the queue "q" is not empty, and there are still fresh oranges present in the grid. In each iteration of the while loop, the solution dequeues all the rotten oranges at the current time step and processes them.
+
+For each rotten orange, the solution checks all the adjacent cells in the grid in the directions specified in the "directions" list. If the adjacent cell contains a fresh orange, the orange is marked as rotten by setting its value to 2, and it is added to the queue "q". Additionally, the "fresh" count is reduced by 1.
+
+The solution keeps track of the current time step by incrementing the "time" variable after each iteration of the while loop.
+
+After the while loop has completed, the solution returns the value of "time" if all the fresh oranges have been rotted, otherwise it returns -1.
+
+In summary, the while loop in the code runs
