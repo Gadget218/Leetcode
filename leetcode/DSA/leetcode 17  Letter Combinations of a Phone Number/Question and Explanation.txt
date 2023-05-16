@@ -1,0 +1,40 @@
+Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
+
+A mapping of digits to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+
+
+ 
+
+Example 1:
+
+Input: digits = "23"
+Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+Example 2:
+
+Input: digits = ""
+Output: []
+Example 3:
+
+Input: digits = "2"
+Output: ["a","b","c"]
+ 
+
+Constraints:
+
+0 <= digits.length <= 4
+digits[i] is a digit in the range ['2', '9'].
+
+
+
+
+Solution Explained:
+
+The digitnchar dictionary maps each digit to the corresponding set of characters on a phone keypad. For example, the digit "2" maps to "abc", "3" maps to "def", and so on.
+
+The backtrack function is a recursive helper function that generates all possible letter combinations. It takes two parameters: i, which represents the current index of the digit being processed, and CurStr, which represents the current combination of characters being constructed.
+
+The base case for the recursion is when the length of CurStr is equal to the length of the input digits. In this case, the current combination is a valid letter combination, so it is appended to the res list.
+
+In the recursive case, the function iterates over each character c in the set of characters corresponding to the current digit digits[i]. It then recursively calls backtrack with the updated index i+1 and the updated combination CurStr+c. This process generates all possible combinations by exploring all possible choices for each digit.
+
+Finally, the main method checks if the input digits is not empty. If it's not empty, it calls the backtrack function with the initial index 0 and an empty string as the initial combination. It then returns the res list, which contains all the generated letter combinations.
