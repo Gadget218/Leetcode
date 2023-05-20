@@ -1,0 +1,59 @@
+leetcode 1768. Merge Strings Alternately
+You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters onto the end of the merged string.
+
+Return the merged string.
+
+ 
+
+Example 1:
+
+Input: word1 = "abc", word2 = "pqr"
+Output: "apbqcr"
+Explanation: The merged string will be merged as so:
+word1:  a   b   c
+word2:    p   q   r
+merged: a p b q c r
+Example 2:
+
+Input: word1 = "ab", word2 = "pqrs"
+Output: "apbqrs"
+Explanation: Notice that as word2 is longer, "rs" is appended to the end.
+word1:  a   b 
+word2:    p   q   r   s
+merged: a p b q   r   s
+Example 3:
+
+Input: word1 = "abcd", word2 = "pq"
+Output: "apbqcd"
+Explanation: Notice that as word1 is longer, "cd" is appended to the end.
+word1:  a   b   c   d
+word2:    p   q 
+merged: a p b q c   d
+ 
+
+Constraints:
+
+1 <= word1.length, word2.length <= 100
+word1 and word2 consist of lowercase English letters.
+
+Soltion Explanation:
+1. The method mergeAlternately takes two strings, word1 and word2, as input and returns a string.
+
+2. The variable n is initialized to 0, and an empty list called merged is created to store the merged characters from word1 and word2.
+
+3. The while loop is started with the condition n < len(word1) and n < len(word2). This loop will iterate until n reaches the length of the shorter string.
+
+4. Inside the loop, the character at index n from word1 is appended to the merged list using merged.append(word1[n]). Similarly, the character at index n from word2 is appended to merged using merged.append(word2[n]). This ensures that the characters from word1 and word2 are added alternately to the merged list.
+
+5. After appending both characters from word1 and word2 to merged, n is incremented by 1 using n += 1.
+
+6. Once the loop finishes, it means all the characters up to the length of the shorter string have been added alternately to merged.
+
+7. After the loop, there is a conditional statement that checks if word1 has remaining characters (i.e., its length is greater than n). If true, it means word1 is longer, so the remaining characters from index n to the end of word1 are appended to merged using merged.append(word1[n:]).
+
+8. If the conditional statement in step 7 is false, it means word2 is longer or both strings have equal length. In this case, the remaining characters from index n to the end of word2 are appended to merged using merged.append(word2[n:]).
+
+9. Finally, the merged list is converted to a string by joining all the characters together using "".join(merged). The resulting string is returned as the output of the mergeAlternately method.
+
+Time complexity is O(n), where n is (len(word1) + len(word2)).
+Memory complexity is O(m), where m is (len(word1) + len(word2)).
