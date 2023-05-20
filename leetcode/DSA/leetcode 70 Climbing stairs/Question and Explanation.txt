@@ -1,0 +1,83 @@
+#leetcode 70. Climbing Stairs
+
+
+
+You are climbing a staircase. It takes n steps to reach the top.
+
+
+
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+
+
+ Example 1:
+
+
+
+Input: n = 2
+
+Output: 2
+
+Explanation: There are two ways to climb to the top.
+
+1. 1 step + 1 step
+
+2. 2 steps
+
+Example 2:
+
+
+
+Input: n = 3
+
+Output: 3
+
+Explanation: There are three ways to climb to the top.
+
+1. 1 step + 1 step + 1 step
+
+2. 1 step + 2 steps
+
+3. 2 steps + 1 step
+
+ 
+
+
+
+Constraints:
+
+
+
+1. 1 <= n <= 45
+
+
+
+Solution Explanation:
+
+
+
+Consider n=5.
+
+
+
+Step 1. Brute Force: Let's map down all the possible paths by drawing a decision tree (refer to page 1), the objective is to see how many paths lead to 5. Each node of the tree will have two branches where one branch's node is 1 step ahead of the parent node and the other branch is 2 steps ahead of the parent node, time complexity as of now is O(2^n). 
+
+After the construction of the decision tree is done it can be observed that there are multiple branches or sub-trees that are identical(refer to page 2).
+
+
+
+Step 2. Memoization: All the duplicate sub-trees will not be considered since there is no need to repeat the same computation instead we'll cache the result(refer to page 3), now time complexity has reduced to O(n).
+
+ This can be further simplified by using a dynamic programming solution with a bottom-up approach where we'll start at the result 5 and go to the initial point 0.
+
+
+
+Step 3. Dynamic Programming: A array from index 0 to n(=5) is made(refer to page 4). In the bottom-up approach, the array is filled from index 5 onwards and moved to index 0. While the pointer is at index 5 it is calculated how many ways can be landed at index 5 from index 4 and 5 which is 1 for both cases. Next, it is calculated how many ways to land at index 5 from index 3 which will be summation of values at 4 and 5 indices and so on. A Fibonacci Sequence is established(refer to page 5).
+
+
+
+Step 4. Code: In the code, it is not required to make a separate array to store the entire sequence instead two variables can be initialized at the final and penultimate indices which can be used to calculate upcoming values(refer to page 6).
+
+
+
+The Python code is on the final page of the attached pdf, it can be observed there how the variables are utilized there at the code.
