@@ -1,0 +1,40 @@
+Leetcode 11. Container With Most Water
+
+You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+
+Find two lines that together with the x-axis form a container, such that the container contains the most water.
+
+Return the maximum amount of water a container can store.
+
+Notice that you may not slant the container.
+
+Input: height = [1,8,6,2,5,4,8,3,7]
+Output: 49
+Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
+Example 2:
+
+Input: height = [1,1]
+Output: 1
+ 
+
+Constraints:
+
+n == height.length
+2 <= n <= 105
+0 <= height[i] <= 104
+
+
+
+Solution Explanation:
+
+The algorithm initializes two pointers, l and r, pointing to the leftmost and rightmost elements of the height list, respectively. It also initializes the area variable to 0.
+
+The main loop continues until the left pointer (l) becomes greater than or equal to the right pointer (r). In each iteration, it calculates the area of the rectangle formed by the current pointers and updates the area variable if the calculated area is greater.
+
+The area calculation is done by multiplying the minimum height between the two pointers (min(height[l], height[r]) with the distance between the pointers (r - l).
+
+After calculating the area, the algorithm moves the pointer that points to the smaller height towards the center. If height[l] is less than height[r], it means that moving the left pointer towards the center might increase the area. Therefore, the left pointer l is incremented by 1. Otherwise, if height[l] is greater than or equal to height[r], the algorithm moves the right pointer r towards the center by decrementing it by 1.
+
+Finally, the algorithm returns the maximum area that was found during the iterations.
+
+This implementation has a time complexity of O(n), where n is the length of the input height list. It iterates over the list once, and at each iteration, it performs constant time operations to update the area and move the pointers.
