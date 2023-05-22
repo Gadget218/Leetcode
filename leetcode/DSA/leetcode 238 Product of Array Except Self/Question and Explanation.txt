@@ -25,31 +25,56 @@ The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit int
  
 
 Follow up: Can you solve the problem in O(1) extra space complexity? 
-
 Solution Explanation:
-Following logic is used to solve the problem:
-Consider an array: a, b, c, d as the input.
+
+The following logic is used to solve the problem:
+
+Consider an array 'a, b, c, d' as the input.
+
+
 
 prefix:
+
 ->
-|       a       |   a*b   | a*b*c | a*b*c*d |
+
+|    a    |  a*b  | a*b*c | a*b*c*d |
+
 postfix:
+
 <-
-| a*b*c*d | b*c*d |   c*d   |      d        |
+
+| a*b*c*d | b*c*d |  c*d  |   d    |
+
+
 
 the result is a multiplication of all the values at each position without the symbol in own position (the left value from prefix and the right one from postfix):
-|    b*c*d  | a*c*d | a*b*d |   a*b*c   |
+
+|  b*c*d | a*c*d | a*b*d |  a*b*c  |
+
+
 
 Code Explanation:
+
 1. Initialize the result list res with a length equal to the input list nums, and fill it with ones. This creates an initial product of 1 for all elements.
 
+
+
 2. Calculate the prefix products: The first loop iterates over the nums list from left to right. 
+
 At each index i, it updates the res[i] value with the prefix product so far by multiplying it with prefix, which is initially set to 1. This step ensures that res[i] contains the product of all elements before index i.
 
+
+
 3. Calculate the postfix products: The second loop iterates over the nums list from right to left using a range that starts from len(nums)-1 and goes down to 0. At each index i, it updates the res[i] value by multiplying it with the postfix, which is initially set to 1. 
+
 This step ensures that res[i] contains the product of all elements after index i.
+
+
 
 4. Finally, the res list contains the desired products of all elements except the element at the corresponding index.
 
-Space Complexity is O(1) if result is not considered as extra memory.
+
+
+Space Complexity is O(1) if the result is not considered as extra memory.
+
 
