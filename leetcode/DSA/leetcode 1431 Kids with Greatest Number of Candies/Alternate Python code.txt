@@ -1,0 +1,14 @@
+class Solution:
+    def kidsWithCandies(self, candies: List[int], extraCandies: int) -> List[bool]:
+        n=0
+        res=[]
+        for i in candies:
+            if n<i:
+                n=i
+        
+        for j in candies:
+            if (j+extraCandies)>=n:
+                res.append(True)
+            else:
+                res.append(False)
+        return res
