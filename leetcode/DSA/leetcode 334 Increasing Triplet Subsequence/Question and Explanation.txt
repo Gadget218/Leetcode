@@ -1,0 +1,32 @@
+334. Increasing Triplet Subsequence
+Given an integer array nums, return true if there exists a triple of indices (i, j, k) such that i < j < k and nums[i] < nums[j] < nums[k]. If no such indices exists, return false.
+
+Example 1:
+
+Input: nums = [1,2,3,4,5]
+Output: true
+Explanation: Any triplet where i < j < k is valid.
+Example 2:
+
+Input: nums = [5,4,3,2,1]
+Output: false
+Explanation: No triplet exists.
+Example 3:
+
+Input: nums = [2,1,5,0,4,6]
+Output: true
+Explanation: The triplet (3, 4, 5) is valid because nums[3] == 0 < nums[4] == 4 < nums[5] == 6.
+ 
+
+Constraints:
+
+1 <= nums.length <= 5 * 105
+-231 <= nums[i] <= 231 - 1
+ 
+Solution Explanation: 
+The code uses two variables, i and j, initialized with positive infinity (float('inf')). It iterates over the elements in the nums list.
+For each element n, it checks if n is less than or equal to i. If so, it updates i to n. If n is greater than i but less than or equal to j, it updates j to n. Finally, if n is greater than both i and j, it means we have found an increasing triplet subsequence, and the function returns True. If the loop completes without finding an increasing triplet, the function returns False.
+
+The code effectively scans the list once and updates the values of i and j accordingly. 
+By the end of the loop, if there exists an increasing triplet subsequence, it will have been detected and the function will return True.
+Otherwise, if no such subsequence is found, it returns False.
