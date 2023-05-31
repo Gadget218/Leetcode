@@ -1,0 +1,14 @@
+
+class Solution:
+    def maxOperations(self, nums: List[int], k: int) -> int:
+        needSet = defaultdict(int)
+        res = 0
+        for n in nums:
+            if needSet[n]:
+                res += 1
+                needSet[n] -= 1
+
+            else:
+                needSet[k - n] += 1
+
+        return res
