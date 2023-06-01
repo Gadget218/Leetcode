@@ -1,0 +1,35 @@
+643. Maximum Average Subarray I
+
+You are given an integer array nums consisting of n elements, and an integer k.
+
+Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value. Any answer with a calculation error less than 10-5 will be accepted.
+
+ 
+
+Example 1:
+
+Input: nums = [1,12,-5,-6,50,3], k = 4
+Output: 12.75000
+Explanation: Maximum average is (12 - 5 - 6 + 50) / 4 = 51 / 4 = 12.75
+Example 2:
+
+Input: nums = [5], k = 1
+Output: 5.00000
+ 
+
+Constraints:
+
+n == nums.length
+1 <= k <= n <= 105
+-104 <= nums[i] <= 104
+
+Solution:
+The Solution utilizes the sliding window approach.
+
+The code initializes two variables: currSum and maxSum with the sum of the first k elements of nums. This sum is obtained using the sum function and slicing nums from index 0 to k. currSum keeps track of the current sum of the subarray being considered, while maxSum stores the maximum sum encountered so far.
+
+The code then enters a loop that starts from k and iterates until the length of nums. In each iteration, the code updates currSum by subtracting the element nums[i-k] (the first element of the previous subarray) and adding the element nums[i] (the last element of the current subarray). This update simulates the sliding window technique where the subarray shifts one element to the right. After the update, currSum represents the sum of the current subarray of length k.
+
+Inside the loop, the code also updates maxSum by comparing it with currSum and taking the maximum value between the two. This ensures that maxSum always stores the maximum sum encountered so far.
+
+Finally, the code returns the maximum average by dividing maxSum by k.
