@@ -1,0 +1,43 @@
+1004. Max Consecutive Ones III
+
+Given a binary array nums and an integer k, return the maximum number of consecutive 1's in the array if you can flip at most k 0's.
+
+ 
+
+Example 1:
+
+Input: nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2
+Output: 6
+Explanation: [1,1,1,0,0,1,1,1,1,1,1]
+Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
+Example 2:
+
+Input: nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], k = 3
+Output: 10
+Explanation: [0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1]
+Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
+ 
+
+Constraints:
+
+1 <= nums.length <= 105
+nums[i] is either 0 or 1.
+0 <= k <= nums.length
+
+Solution:
+The code efficiently slides a window from left to right, keeping track of the longest subarray of 1s by using a variable max_cons. 
+The approach allows for flipping at most k zeros to ones and adjusts the window size accordingly when the number of allowed flips is exceeded.
+
+1. Initialize variables l and max_cons to 0. The variable l represents the left index of the sliding window, and max_cons keeps track of the length of the longest subarray of 1s encountered so far.
+
+2. Iterate through the array nums using the enumerate function to access both the index r and the value n at that index.
+
+3. Calculate the remaining flips k by subtracting 1 - n from it. Since the array contains only 1s and 0s, 1 - 1 is 0, and 1 - 0 is 1. This means that k is decremented by 1 when encountering a 0 and remains the same when encountering a 1.
+
+4. Check if the remaining flips k becomes negative, indicating that the number of allowed flips has been exceeded. In that case, adjust the sliding window by incrementing l and updating k by adding 1 - nums[l] (restoring the flip count).
+
+5. If the remaining flips k is non-negative, update max_cons with the maximum length between the current max_cons and the length of the current subarray r - l + 1.
+
+6. Repeat steps 2-5 until all elements in the array have been processed.
+
+7. Finally, return the value of max_cons, which represents the length of the longest subarray of 1s with at most k flips.
