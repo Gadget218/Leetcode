@@ -1,0 +1,52 @@
+1493. Longest Subarray of 1's After Deleting One Element
+Given a binary array nums, you should delete one element from it.
+
+Return the size of the longest non-empty subarray containing only 1's in the resulting array. Return 0 if there is no such subarray.
+
+ 
+
+Example 1:
+
+Input: nums = [1,1,0,1]
+Output: 3
+Explanation: After deleting the number in position 2, [1,1,1] contains 3 numbers with value of 1's.
+Example 2:
+
+Input: nums = [0,1,1,1,0,1,1,0,1]
+Output: 5
+Explanation: After deleting the number in position 4, [0,1,1,1,1,1,0,1] longest subarray with value of 1's is [1,1,1,1,1].
+Example 3:
+
+Input: nums = [1,1,1]
+Output: 2
+Explanation: You must delete one element.
+ 
+
+Constraints:
+
+1 <= nums.length <= 105
+nums[i] is either 0 or 1.
+
+Solution:
+The code efficiently slides a window from left to right, keeping track of the length of the longest subarray with at most one zero.
+It adjusts the window size by moving the left pointer t forward whenever more than one zero is encountered. 
+The maximum length is updated as necessary.
+
+Code explanation:
+1. Initialize variables t, res, and cnt to 0. The variable t represents the left index of the sliding window, res keeps track of the length of the longest subarray encountered so far, and cnt counts the number of zeros encountered in the current window.
+
+2. Iterate through the array nums using a for loop with the index variable h.
+
+3. Check if the current element nums[h] is 0. If it is, increment the cnt variable by 1, indicating the presence of a zero in the current window.
+
+4. Enter a while loop that runs as long as the cnt variable is greater than 1, indicating that there are more than one zero in the current window. Inside the while loop:
+
+	a. Check if the element at index t is 0. If it is, decrement the cnt variable by 1, as we are moving the left pointer t forward and excluding the zero at that position.
+
+	b. Increment the t variable by 1, moving the left pointer of the sliding window forward.
+
+5. After exiting the while loop, calculate the length of the current subarray as h - t and update the res variable with the maximum length between the current res and the length of the current subarray.
+
+6. Repeat steps 3-5 until all elements in the array have been processed.
+
+7. Finally, return the value of res, which represents the length of the longest subarray with at most one zero.
