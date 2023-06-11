@@ -1,0 +1,61 @@
+394. Decode String
+
+Given an encoded string, return its decoded string.
+
+The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times. Note that k is guaranteed to be a positive integer.
+
+You may assume that the input string is always valid; there are no extra white spaces, square brackets are well-formed, etc. Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, k. For example, there will not be input like 3a or 2[4].
+
+The test cases are generated so that the length of the output will never exceed 105.
+
+ 
+
+Example 1:
+
+Input: s = "3[a]2[bc]"
+Output: "aaabcbc"
+Example 2:
+
+Input: s = "3[a2[c]]"
+Output: "accaccacc"
+Example 3:
+
+Input: s = "2[abc]3[cd]ef"
+Output: "abcabccdcdcdef"
+ 
+
+Constraints:
+
+1 <= s.length <= 30
+s consists of lowercase English letters, digits, and square brackets '[]'.
+s is guaranteed to be a valid input.
+All the integers in s are in the range [1, 300].
+
+Solution:
+1. Create an empty stack called stack to store characters during the decoding process.
+
+2. Iterate through each character in the input string s.
+
+3. If the current character is not ']', it means it is either a digit, a letter, or '['. In this case, we append it to the stack (stack.append(s[i])).
+
+4. If the current character is ']', it means we have encountered the end of an encoded substring. We need to decode it and replace the corresponding characters in the stack.
+
+5. Create an empty string called substr to store the decoded substring.
+
+6. Inside a while loop, we check the top of the stack (stack[-1]) until we find the '[' character, which indicates the start of the encoded substring. We pop characters from the stack and prepend them to substr to reverse their order.
+
+7. After finding the '[' character, we pop it from the stack because we no longer need it.
+
+8. Create an empty string called k to store the repetition count of the substring.
+
+9. Inside another while loop, we check if the stack is not empty (stack) and the top of the stack is a digit (stack[-1].isdigit()). If so, we pop digits from the stack and prepend them to k to reverse their order.
+
+10. Convert the string k to an integer (int(k)) and multiply it with substr. This step replicates the substring the required number of times.
+
+11. Append the decoded substring to the stack (stack.append(int(k) * substr)).
+
+12. After iterating through all the characters in the input string, we join the characters in the stack together to form the final decoded string ("".join(stack)).
+
+The time complexity of this solution is O(n), where n is the length of the input string s. We iterate through each character in the string once.
+
+The space complexity is O(n), as the stack can potentially store all the characters in the string if no decoding occurs.
