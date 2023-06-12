@@ -1,0 +1,64 @@
+649. Dota2 Senate
+
+In the world of Dota2, there are two parties: the Radiant and the Dire.
+
+The Dota2 senate consists of senators coming from two parties. Now the Senate wants to decide on a change in the Dota2 game. The voting for this change is a round-based procedure. In each round, each senator can exercise one of the two rights:
+
+Ban one senator's right: A senator can make another senator lose all his rights in this and all the following rounds.
+Announce the victory: If this senator found the senators who still have rights to vote are all from the same party, he can announce the victory and decide on the change in the game.
+Given a string senate representing each senator's party belonging. The character 'R' and 'D' represent the Radiant party and the Dire party. Then if there are n senators, the size of the given string will be n.
+
+The round-based procedure starts from the first senator to the last senator in the given order. This procedure will last until the end of voting. All the senators who have lost their rights will be skipped during the procedure.
+
+Suppose every senator is smart enough and will play the best strategy for his own party. Predict which party will finally announce the victory and change the Dota2 game. The output should be "Radiant" or "Dire".
+
+ 
+
+Example 1:
+
+Input: senate = "RD"
+Output: "Radiant"
+Explanation: 
+The first senator comes from Radiant and he can just ban the next senator's right in round 1. 
+And the second senator can't exercise any rights anymore since his right has been banned. 
+And in round 2, the first senator can just announce the victory since he is the only guy in the senate who can vote.
+Example 2:
+
+Input: senate = "RDD"
+Output: "Dire"
+Explanation: 
+The first senator comes from Radiant and he can just ban the next senator's right in round 1. 
+And the second senator can't exercise any rights anymore since his right has been banned. 
+And the third senator comes from Dire and he can ban the first senator's right in round 1. 
+And in round 2, the third senator can just announce the victory since he is the only guy in the senate who can vote.
+ 
+
+Constraints:
+
+n == senate.length
+1 <= n <= 104
+senate[i] is either 'R' or 'D'.
+
+Solution:
+
+1. The senate string is converted to a list of characters using the list() function. This allows easier manipulation of individual characters in the string.
+
+2. Two deques (double-ended queues) are created: D and R. These deques will be used to keep track of the indices of the senators from the "Dire" party (D) and the "Radiant" party (R), respectively.
+
+3. The code then iterates over each character c and its corresponding index i in the senate string.
+
+4. If the character c is equal to "R" (representing a senator from the Radiant party), the index i is appended to the R deque using the append() method.
+
+5. If the character c is not equal to "R" (indicating a senator from the Dire party), the index i is appended to the D deque using the append() method.
+
+6. After populating the D and R deques with the indices of the senators, a while loop is initiated as long as both D and R are non-empty.
+
+7. In each iteration of the while loop, the function simulates a round of banning senators. The first senator from the Dire party (D.popleft()) and the first senator from the Radiant party (R.popleft()) are removed from their respective deques.
+
+8. The code checks if the index of the removed Radiant senator (rTurn) is less than the index of the removed Dire senator (dTurn). If this condition is true, it means the Radiant senator was banned earlier, and hence, they will be assigned a new index by adding the length of the senate list. This is done to simulate the senators going to the end of the line for the next round of banning.
+
+9. If the condition in step 8 is false, it means the Dire senator was banned earlier, and they are assigned a new index in the same manner.
+
+10. The while loop continues until either the D deque or the R deque becomes empty.
+
+11. Finally, after the while loop ends, the function checks if the R deque is empty. If it is, it means that all Radiant senators have been banned, and the function returns the string "Dire". Otherwise, it returns the string "Radiant" indicating that the Radiant party emerged as the winner.
