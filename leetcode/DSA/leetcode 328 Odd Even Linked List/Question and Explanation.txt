@@ -1,0 +1,45 @@
+328. Odd Even Linked List
+
+Given the head of a singly linked list, group all the nodes with odd indices together followed by the nodes with even indices, and return the reordered list.
+
+The first node is considered odd, and the second node is even, and so on.
+
+Note that the relative order inside both the even and odd groups should remain as it was in the input.
+
+You must solve the problem in O(1) extra space complexity and O(n) time complexity.
+
+ 
+
+Example 1:
+
+
+Input: head = [1,2,3,4,5]
+Output: [1,3,5,2,4]
+Example 2:
+
+
+Input: head = [2,1,3,5,6,4,7]
+Output: [2,3,6,7,1,5,4]
+ 
+
+Constraints:
+
+The number of nodes in the linked list is in the range [0, 104].
+-106 <= Node.val <= 106
+
+Solution:
+1. First, the code checks if the given head is None. If it is, it means the list is empty, so the function returns the head as is.
+
+2. Two pointers, s and f, are initialized to the head and head.next respectively. These pointers will be used to separate the odd and even nodes.
+
+3. A new variable fHead is created to store the head of the even nodes. This will be used later to connect the odd and even parts of the list.
+
+4. The main loop begins, which continues as long as f and f.next are not None. This loop handles the reordering process.
+
+5. In each iteration of the loop, s.next is set to s.next.next, effectively removing the next node from the odd part of the list. s is then updated to s.next.
+
+6. Similarly, f.next is set to f.next.next, removing the next node from the even part of the list. f is then updated to f.next.
+
+7. After the loop ends, s will be pointing to the last odd node in the list. At this point, s.next is set to fHead to connect the odd and even parts of the list.
+
+8. Finally, the function returns the original head of the list, which now has the odd and even nodes reordered.
