@@ -1,0 +1,75 @@
+2130. Maximum Twin Sum of a Linked List
+
+In a linked list of size n, where n is even, the ith node (0-indexed) of the linked list is known as the twin of the (n-1-i)th node, if 0 <= i <= (n / 2) - 1.
+
+For example, if n = 4, then node 0 is the twin of node 3, and node 1 is the twin of node 2. These are the only nodes with twins for n = 4.
+The twin sum is defined as the sum of a node and its twin.
+
+Given the head of a linked list with even length, return the maximum twin sum of the linked list.
+
+ 
+
+Example 1:
+
+5->4->2->1
+Input: head = [5,4,2,1]
+Output: 6
+Explanation:
+Nodes 0 and 1 are the twins of nodes 3 and 2, respectively. All have twin sum = 6.
+There are no other nodes with twins in the linked list.
+Thus, the maximum twin sum of the linked list is 6. 
+Example 2:
+
+
+Input: head = [4,2,2,3]
+Output: 7
+Explanation:
+The nodes with twins present in this linked list are:
+- Node 0 is the twin of node 3 having a twin sum of 4 + 3 = 7.
+- Node 1 is the twin of node 2 having a twin sum of 2 + 2 = 4.
+Thus, the maximum twin sum of the linked list is max(7, 4) = 7. 
+Example 3:
+
+
+Input: head = [1,100000]
+Output: 100001
+Explanation:
+There is only one node with a twin in the linked list having twin sum of 1 + 100000 = 100001.
+ 
+
+Constraints:
+The number of nodes in the list is an even integer in the range [2, 105].
+1 <= Node.val <= 105
+
+Explanation:
+1. Two pointers, s and f, are initialized to the head of the linked list. These pointers will be used to traverse the list.
+
+2. A new variable prev is initialized to None. This variable will store the previous node in the list, which will be used to build the reversed list.
+
+3. The first while loop executes as long as both f and f.next are not None. This loop is used to reverse the list while traversing it. The steps inside the loop are as follows:
+
+	a. f is moved two steps ahead by setting f = f.next.next. This allows f to traverse the list at twice the speed of s.
+
+	b. The next node of s is stored in a temporary variable t by setting t = s.next. This is done to avoid losing the reference to the next node after reversing the pointer.
+
+	c. The next pointer of s is set to prev by setting s.next = prev. This effectively reverses the pointer of s to point to the previous node prev.
+
+	d. prev is updated to s by setting prev = s. This ensures that prev always points to the previous node as the list is reversed.
+
+	e. s is moved to the next node by setting s = t.
+
+4. After the first while loop ends, the linked list will be reversed, and the variable prev will be pointing to the last node of the original list.
+
+5. A new variable res is initialized to 0. This variable will store the maximum twin sum found.
+
+6. The second while loop executes as long as s is not None. This loop is used to calculate the maximum twin sum. The steps inside the loop are as follows:
+
+	a. The current twin sum is calculated by adding the values of prev.val and s.val.
+	
+	b. The maximum of the current twin sum and res is taken by setting res = max(res, prev.val + s.val). This ensures that res always stores the maximum twin sum found so far.
+
+	c. prev is moved to the next node by setting prev = prev.next.
+
+	d. s is moved to the next node by setting s = s.next.
+
+7. Finally, the function returns the maximum twin sum stored in the variable res.
