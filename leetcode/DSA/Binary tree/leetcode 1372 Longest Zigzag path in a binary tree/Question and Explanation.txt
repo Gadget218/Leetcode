@@ -1,0 +1,56 @@
+1372. Longest ZigZag Path in a Binary Tree
+
+You are given the root of a binary tree.
+
+A ZigZag path for a binary tree is defined as follow:
+
+Choose any node in the binary tree and a direction (right or left).
+If the current direction is right, move to the right child of the current node; otherwise, move to the left child.
+Change the direction from right to left or from left to right.
+Repeat the second and third steps until you can't move in the tree.
+Zigzag length is defined as the number of nodes visited - 1. (A single node has a length of 0).
+
+Return the longest ZigZag path contained in that tree.
+
+ 
+
+Example 1:
+
+
+Input: root = [1,null,1,1,1,null,null,1,1,null,1,null,null,null,1]
+Output: 3
+Explanation: Longest ZigZag path in blue nodes (right -> left -> right).
+Example 2:
+
+
+Input: root = [1,1,1,null,1,null,null,1,1,null,1]
+Output: 4
+Explanation: Longest ZigZag path in blue nodes (left -> right -> left -> right).
+Example 3:
+
+Input: root = [1]
+Output: 0
+ 
+
+Constraints:
+
+The number of nodes in the tree is in the range [1, 5 * 104].
+1 <= Node.val <= 100
+
+Solution:
+1. The longestZigZag function initializes a variable maxLength to 0. This variable will store the length of the longest zigzag path encountered so far.
+
+2. The solve function performs a recursive depth-first search (DFS) to explore all paths in the binary tree. It takes three parameters: the current node (node), the depth of the current path (deep), and the direction of the previous edge (dir).
+
+3. Inside the solve function, the maxLength is updated by taking the maximum of the current maxLength and the deep value. This ensures that maxLength always stores the length of the longest zigzag path encountered.
+
+4. If the node has a left child (node.left is not None), a recursive call is made to solve with the left child node, deep + 1, and the direction 'left'. However, if the previous direction (dir) was 'left', the depth is reset to 1 (deep + 1) to start a new path. This is done to maintain the alternating zigzag pattern.
+
+5. Similarly, if the node has a right child (node.right is not None), a recursive call is made to solve with the right child node, deep + 1, and the direction 'right'. If the previous direction (dir) was 'right', the depth is reset to 1.
+
+6. The solve function is initially called from the longestZigZag function with the root node, a depth of 0, and an empty direction ('').
+
+7. Finally, the maxLength is returned as the result, which represents the length of the longest zigzag path in the binary tree.
+
+Time complexity: O(n)
+Space complexity: O(log(n)) in a balanced binary tree, O(n) in the worst case (linear tree)

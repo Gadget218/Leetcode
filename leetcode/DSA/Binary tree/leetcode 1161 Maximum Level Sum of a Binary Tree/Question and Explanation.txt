@@ -1,0 +1,64 @@
+Given the root of a binary tree, the level of its root is 1, the level of its children is 2, and so on.
+
+Return the smallest level x such that the sum of all the values of nodes at level x is maximal.
+
+ 
+
+Example 1:
+
+
+Input: root = [1,7,0,7,-8,null,null]
+Output: 2
+Explanation: 
+Level 1 sum = 1.
+Level 2 sum = 7 + 0 = 7.
+Level 3 sum = 7 + -8 = -1.
+So we return the level with the maximum sum which is level 2.
+Example 2:
+
+Input: root = [989,null,10250,98693,-89388,null,null,null,-32127]
+Output: 2
+ 
+
+Constraints:
+
+The number of nodes in the tree is in the range [1, 104].
+-105 <= Node.val <= 105
+
+Solution:
+
+1. The function maxLevelSum takes a root node as input, which represents the root of the binary tree. The goal is to find the level with the maximum sum in the tree.
+
+2. Initialize a list level with the root node. This list will store the nodes at the current level.
+
+3. Initialize a variable level_num to 1, representing the current level number.
+
+4. Initialize a variable max_sum with the value of the root node. This variable will store the maximum sum found so far.
+
+5. Initialize a variable ret with 1, representing the level with the maximum sum.
+
+6. Enter a while loop that continues until the level list is empty.
+
+7. Inside the loop, initialize an empty list next_level to store the nodes at the next level.
+
+8. Initialize a variable level_sum to 0, which will store the sum of node values at the current level.
+
+9. Increment the level_num by 1 to move to the next level.
+
+10. Iterate over each roots node in the level list.
+
+11. Check if the roots node has a left child. If it does, append the left child to the next_level list and add its value to the level_sum.
+
+12. Check if the roots node has a right child. If it does, append the right child to the next_level list and add its value to the level_sum.
+
+13. Check if the next_level list is not empty and the level_sum is greater than the max_sum. If both conditions are true, update the max_sum with the level_sum and update the ret with the current level_num. This ensures that we track the level with the maximum sum.
+
+14. Update the level list with the nodes in the next_level list.
+
+15. Repeat steps 7 to 14 until all levels of the binary tree are traversed.
+
+16. Finally, return the ret variable, which contains the level with the maximum sum.
+
+Time Complexity: The code visits each node of the binary tree once, so the time complexity is O(n), where n is the number of nodes in the tree.
+
+Space Complexity: The space complexity depends on the maximum number of nodes at any given level. In the worst case, the maximum number of nodes at a level would be n/2 (in a complete binary tree). Therefore, the space complexity is O(n), where n is the number of nodes in the tree.

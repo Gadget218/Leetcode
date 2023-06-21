@@ -1,0 +1,62 @@
+1448. Count Good Nodes in Binary Tree
+
+Given a binary tree root, a node X in the tree is named good if in the path from root to X there are no nodes with a value greater than X.
+
+Return the number of good nodes in the binary tree.
+
+ 
+
+Example 1:
+
+
+
+Input: root = [3,1,4,3,null,1,5]
+Output: 4
+Explanation: Nodes in blue are good.
+Root Node (3) is always a good node.
+Node 4 -> (3,4) is the maximum value in the path starting from the root.
+Node 5 -> (3,4,5) is the maximum value in the path
+Node 3 -> (3,1,3) is the maximum value in the path.
+Example 2:
+
+
+
+Input: root = [3,3,null,4,2]
+Output: 3
+Explanation: Node 2 -> (3, 3, 2) is not good, because "3" is higher than it.
+Example 3:
+
+Input: root = [1]
+Output: 1
+Explanation: Root is considered as good.
+ 
+
+Constraints:
+
+The number of nodes in the binary tree is in the range [1, 10^5].
+Each node's value is between [-10^4, 10^4].
+
+Solution:
+The Solution class contains a single method called goodNodes, which takes a parameter root representing the root of the binary tree. The method returns an integer representing the count of "good nodes" in the tree.
+
+Within the goodNodes method, there is an inner helper function called dfs (depth-first search). This function performs a recursive depth-first search traversal of the binary tree, keeping track of the maximum value encountered so far.
+
+The dfs function takes two parameters: node, representing the current node being visited, and maxVal, representing the maximum value encountered on the path from the root to the current node.
+
+At the start of the dfs function, there is a base case check. If the node parameter is None, it means we have reached the end of a branch or a leaf node, so the function returns 0.
+
+If the current node is not None, it means there is a valid tree node. The function initializes a variable res to 1 if the value of the current node is greater than or equal to maxVal, indicating that it is a "good node." Otherwise, res is set to 0.
+
+The function updates maxVal by taking the maximum between the current node.val and maxVal. This ensures that maxVal holds the maximum value encountered on the path from the root to the current node.
+
+The function then recursively calls dfs on the left child of the current node, passing the updated maxVal. The result is added to res.
+
+Similarly, the function recursively calls dfs on the right child of the current node, passing the updated maxVal. The result is added to res.
+
+Finally, the function returns the accumulated value of res, which represents the count of "good nodes" in the subtree rooted at the current node.
+
+Returning to the goodNodes method, it initializes the maximum value (maxVal) as the value of the root node (root.val). It then calls the dfs function with root and maxVal as arguments, initiating the depth-first search traversal from the root of the binary tree.
+
+The result of the dfs function is returned as the final output of the goodNodes method.
+
+The time complexity is O(n) and space complexity is O(h). "n" and "h" are the number of nodes and height of the binary tree respectively.

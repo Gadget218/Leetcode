@@ -1,0 +1,46 @@
+236. Lowest Common Ancestor of a Binary Tree
+
+Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
+
+According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).”
+
+ 
+
+Example 1:
+
+
+Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
+Output: 3
+Explanation: The LCA of nodes 5 and 1 is 3.
+Example 2:
+
+
+Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
+Output: 5
+Explanation: The LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself according to the LCA definition.
+Example 3:
+
+Input: root = [1,2], p = 1, q = 2
+Output: 1
+ 
+
+Constraints:
+
+The number of nodes in the tree is in the range [2, 105].
+-109 <= Node.val <= 109
+All Node.val are unique.
+p != q
+p and q will exist in the tree.
+
+Solution:
+The algorithm follows a recursive approach to find the LCA. Here's how it works:
+
+1. The base case of the recursion is reached when 'root' is 'None' or when 'root' is equal to either 'p' or 'q'. In these cases, 'root' itself is returned as the LCA because it is the common ancestor of 'p' and 'q'.
+
+2. The function recursively calls 'lowestCommonAncesto'r on the left and right subtrees of the current 'root'. The results are stored in the variables 'left' and 'right', respectively.
+
+3. Depending on the values of 'left' and 'right', the following cases are considered:
+
+	1. If 'left' is 'None', it means both 'p' and 'q' are in the right subtree of the current 'root'. In this case, the LCA is in the right subtree, so 'right' is returned as the LCA.
+	2. If 'right' is 'None', it means both 'p' and 'q' are in the left subtree of the current 'root'. In this case, the LCA is in the left subtree, so 'left' is returned as the LCA.
+	3. If neither 'left' nor 'right' is 'None', it means 'p' and 'q' are in different subtrees of the current 'root'. In this case, 'root' itself is the LCA, so it is returned.

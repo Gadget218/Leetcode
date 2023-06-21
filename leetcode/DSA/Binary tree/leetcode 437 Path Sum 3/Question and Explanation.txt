@@ -1,0 +1,51 @@
+437. Path Sum III
+
+Given the root of a binary tree and an integer targetSum, return the number of paths where the sum of the values along the path equals targetSum.
+
+The path does not need to start or end at the root or a leaf, but it must go downwards (i.e., traveling only from parent nodes to child nodes).
+
+ 
+
+Example 1:
+
+
+Input: root = [10,5,-3,3,2,null,11,3,-2,null,1], targetSum = 8
+Output: 3
+Explanation: The paths that sum to 8 are shown.
+Example 2:
+
+Input: root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22
+Output: 3
+ 
+
+Constraints:
+
+The number of nodes in the tree is in the range [0, 1000].
+-109 <= Node.val <= 109
+-1000 <= targetSum <= 1000
+
+Solution:
+1. The pathSum function initializes the sums dictionary with a default value of 0 and sets sums[0] to 1. This ensures that when the running sum equals the target sum, there is at least one path found.
+
+2. The dfs function performs the recursive DFS. It takes two parameters: the current node (root) and the running sum (total).
+
+3. Inside the dfs function, a variable count is initialized to 0. This variable will store the count of paths that sum up to the target sum.
+
+4. If the root is not None, the total is updated by adding the value of the current node (total += root.val). This represents the running sum up to the current node.
+
+5. The count is updated by adding sums[total - targetSum]. This value represents the number of paths that have a running sum equal to total - targetSum. If such a path exists, it means that there is a subpath with a sum equal to the target sum.
+
+6. The sums[total] is incremented by 1 to account for the current running sum.
+
+7. Recursive calls are made to dfs for the left and right child nodes. The count is updated by adding the results of these recursive calls.
+
+8. After the recursive calls, sums[total] is decremented by 1 to backtrack and remove the contribution of the current node's running sum from the sums dictionary.
+
+9. Finally, the count is returned.
+
+10. The dfs function is called initially from the pathSum function with the root node and a starting total of 0.
+
+11. The pathSum function returns the result of the dfs function, which represents the number of paths that sum up to the target sum.
+
+Time complexity: O(n)
+Space complexity: O(log(n)) in a balanced binary tree, O(n) in the worst case (linear tree)
