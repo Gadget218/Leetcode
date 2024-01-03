@@ -79,8 +79,3 @@ WHERE s.product_id=p.product_id
 The above SQL query is selecting data from the "Sales" and "Product" tables in a MySQL database.
 The query is selecting the product_name column from the Product table, the year column and price column from the Sales table, and joining the two tables based on the product_id column.
 
-OR
-
-select p1.product_name, s1.year,s1.price 
-from Product p1, Sales s1 
-where s1.product_id=p1.product_id;
