@@ -1,0 +1,21 @@
+def halvesAreAlike(s):
+    v_l = set(["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"])
+    count = 0
+    mid = len(s) // 2
+
+    for i in range(mid):
+        if s[i] in v_l:
+            count += 1
+
+    for i in range(mid, len(s)):
+        if s[i] in v_l:
+            count -= 1
+
+    return count == 0
+
+Explanation:
+T:O(n)
+M:O(1)
+We can use two pointers one starts traversing the list from the beginning to the middle and the second pointer traverses the remaining array.
+
+We can have a count variable that will increase by 1 each time a vowel has been found in the first half od the array. Then it will decrease by 1 each time a vowel has been found in the second half of the array and return truw if count is 0.
