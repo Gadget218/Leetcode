@@ -1,0 +1,20 @@
+class Solution:
+    def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
+        losses = collections.Counter()
+
+        for winner, loser in matches:
+            losses[loser]+=1 #keeping count of the losses of a player
+            losses[winner]+=0 #to insert the player with zero losses
+
+        res= [[],[]]
+        for player in sorted(losses.keys()):
+            if losses[player]==0:
+                res[0].append(player) #append the winner in the first list of the result
+            elif losses[player]==1:
+                res[1].append(player) #append players who lost only once in the second list
+        return res
+        
+T(O): O(n+mlogm), n linear time for the counter to be filled with values, 2*n=n linear time for iterating through the counter losses for filling the output list.
+mlogm time to sort the losses counter in ascending order.
+
+M(O):O(n), n space required for losses counter and constant space for output array.
