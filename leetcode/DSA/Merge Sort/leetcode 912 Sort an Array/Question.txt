@@ -1,0 +1,36 @@
+Given an array of integers nums, sort the array in ascending order and return it.
+
+You must solve the problem without using any built-in functions in O(nlog(n)) time complexity and with the smallest space complexity possible.
+
+ 
+
+Example 1:
+
+Input: nums = [5,2,3,1]
+Output: [1,2,3,5]
+Explanation: After sorting the array, the positions of some numbers are not changed (for example, 2 and 3), while the positions of other numbers are changed (for example, 1 and 5).
+Example 2:
+
+Input: nums = [5,1,1,2,0,0]
+Output: [0,0,1,1,2,5]
+Explanation: Note that the values of nums are not necessairly unique.
+ 
+
+Constraints:
+
+1 <= nums.length <= 5 * 104
+-5 * 104 <= nums[i] <= 5 * 104
+
+Merge Sort Solution Explanation:
+
+Merge Sort Concept: The core idea of Merge Sort is a divide-and-conquer approach. The array is recursively divided into halves until each subarray contains only one element (base case).
+
+Divide Phase: During the divide step, the array is continuously split into two equal halves, efficiently reducing the problem size.
+
+Merging: Two pointers, one for each subarray, are used to compare and merge elements back into the original array.
+
+Pointer Technique:  The two-pointer technique during merging can be used for efficiently comparing and placing elements into the array in sorted order.
+
+Base Case: The base case is reached when subarrays consist of only one element, preventing further division.
+
+Time Complexity Analysis: Merge Sort achieves O(n log n) time complexity due to the logarithmic number of recursive levels and linear complexity per level during merging.
