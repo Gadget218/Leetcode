@@ -1,0 +1,14 @@
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        count=defaultdict(int) #char->count, this will make default value of any integer that is not in the input as zero
+        for c in s:
+            count[c]+=1
+        for i, c in enumerate(s):
+            if count[c]==1:
+                return i
+        return -1
+
+
+        
+T:O(n)
+M:O(1), since the constraint says we only have lowr case letters as input so maximum memory is 26 characters which is constant.
