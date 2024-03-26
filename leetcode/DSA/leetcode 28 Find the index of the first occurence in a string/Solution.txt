@@ -1,0 +1,13 @@
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        f, s = 0, 0
+        while f < len(haystack):
+            if haystack[f] == needle[s]:
+                f += 1
+                s += 1
+                if s == len(needle):
+                    return f - len(needle)
+            else:
+                f = f-s + 1
+                s = 0
+        return -1
