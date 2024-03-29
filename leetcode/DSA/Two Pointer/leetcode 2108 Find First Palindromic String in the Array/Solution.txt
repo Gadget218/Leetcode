@@ -1,0 +1,12 @@
+class Solution:
+    def firstPalindrome(self, words: List[str]) -> str:
+        for n in words:
+            l, r = 0, len(n)-1
+            while n[l]==n[r]:
+                if l >= r:
+                    return n
+                l+=1
+                r-=1
+        return ""
+        
+T: O(n.m), n is length of the array and m is the average size of a string.

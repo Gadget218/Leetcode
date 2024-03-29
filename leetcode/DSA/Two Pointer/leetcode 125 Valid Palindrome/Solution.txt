@@ -1,0 +1,19 @@
+import re
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        if not s:
+            return True
+    # Use regex to remove non-alphanumeric characters and spaces
+        cleaned_text = re.sub(r'[^a-zA-Z0-9]', '', s)
+    # Convert to lowercase
+        cleaned_text = cleaned_text.lower()
+
+        l,r =0, len(cleaned_text) -1
+        while l<r:
+            if cleaned_text[l]!=cleaned_text[r]:
+                return False
+            l+=1
+            r-=1
+        return True
+
+        
