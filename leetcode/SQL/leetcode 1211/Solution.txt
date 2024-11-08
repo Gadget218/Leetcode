@@ -1,0 +1,21 @@
+WITH cte AS (
+    SELECT query_name,
+           rating / position AS ratio,
+           CASE WHEN rating < 3 THEN 1 ELSE 0 END AS quality_binary
+    FROM Queries
+    WHERE query_name is NOT NULL
+)
+SELECT query_name,
+       ROUND(AVG(ratio), 2) AS quality,
+       ROUND((SUM(quality_binary) / COUNT(*)) * 100, 2) AS poor_query_percentage
+FROM cte
+GROUP BY query_name;
+
+--OR--
+
+SELECT query_name,
+       ROUND(AVG(rating/position), 2) AS quality,
+       ROUND((SUM(CASE WHEN rating <3 THEN  1 ELSE 0 END) / COUNT(*)) * 100, 2) AS poor_query_percentage
+FROM Queries
+WHERE query_name is NOT NULL
+GROUP BY query_name;
