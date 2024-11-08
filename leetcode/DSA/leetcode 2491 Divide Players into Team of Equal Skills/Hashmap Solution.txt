@@ -1,0 +1,47 @@
+from collections import Counter
+
+class Solution:
+    def dividePlayers(self, skill: List[int]) -> int:
+        # Calculate the total sum and check divisibility
+        total_sum = sum(skill)
+        n = len(skill)
+        
+        # If the sum is not divisible to create equal teams, return -1
+        if (2 * total_sum) % n != 0:
+            return -1
+        
+        # Target sum for each pair of players
+        target = (2 * total_sum) // n
+        
+        # Create a hashmap to count the frequency of each skill
+        freq = Counter(skill)
+        
+        sumprod = 0
+        
+        # Loop through the skills
+        for s in skill:
+            if freq[s] == 0:
+                # Skill already used up, skip it
+                continue
+            
+            # Find the complement skill to make the target sum
+            complement = target - s
+            
+            # If the complement exists in the hashmap
+            if freq[complement] > 0:
+                # If we are pairing the same skill (e.g., s = complement), 
+                # we need at least 2 occurrences
+                if s == complement and freq[s] < 2:
+                    return -1
+                
+                # Decrease the frequency of both the skill and its complement
+                freq[s] -= 1
+                freq[complement] -= 1
+                
+                # Add the product of the pair to sumprod
+                sumprod += s * complement
+            else:
+                # No complement found, return -1
+                return -1
+        
+        return sumprod

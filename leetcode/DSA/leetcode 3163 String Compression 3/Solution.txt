@@ -1,0 +1,14 @@
+class Solution:
+    def compressedString(self, word: str) -> str:
+        l=0
+        comp=""
+        while l<len(word):
+            w1=word[l]
+            cnt=0
+            while l < len(word) and word[l]==w1 and cnt<9:
+                cnt+=1
+                l+=1
+            comp=comp+str(cnt)+w1
+        return comp
+        
+        
