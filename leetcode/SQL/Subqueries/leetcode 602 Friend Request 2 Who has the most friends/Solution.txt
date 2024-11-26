@@ -1,0 +1,27 @@
+# Write your MySQL query statement below
+WITH cte AS(
+    SELECT requester_id, accepter_id FROM RequestAccepted
+    UNION
+    SELECT accepter_id AS requester_id, requester_id AS accepter_id FROM RequestAccepted
+)
+
+SELECT requester_id AS id, COUNT(accepter_id) AS num
+FROM cte
+GROUP BY requester_id
+ORDER BY num DESC
+LIMIT 1;
+
+--Note: even if you don't rename the cols in cte,the top table col name will be taken, the position of cols which are to be concatenated should be  in correct order.
+--OR
+
+select id,count(*) as num
+from
+(select requester_id as id from RequestAccepted 
+
+union all
+
+select accepter_id as id from RequestAccepted ) as a
+
+group by id
+order by num desc
+limit 1;
