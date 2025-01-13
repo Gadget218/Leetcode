@@ -83,3 +83,9 @@ WHERE t.transaction_id IS NULL
 GROUP BY  v.customer_id
 
 In the above SQL query we are performing a left join and selecting only values where transaction_id is NULL in transaction table i.e. selecting cutomer_id that did not make any transaction.
+
+--OR--
+
+SELECT customer_id, COUNT(customer_id) AS count_no_trans 
+FROM Visits WHERE visit_id NOT IN (SELECT visit_id FROM Transactions)
+GROUP BY customer_id;
