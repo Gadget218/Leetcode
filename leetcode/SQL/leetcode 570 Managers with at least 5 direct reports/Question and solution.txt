@@ -62,3 +62,10 @@ It groups the records by managerId and applies a HAVING clause to filter out the
 
 2. The main query SELECT name FROM Employee WHERE id IN (...) selects the name column from the Employee table for those employees whose id matches the manager IDs obtained from the subquery.
 The IN keyword is used to compare the id values.
+
+--OR--
+
+SELECT e1.name FROM Employee e1 JOIN Employee e2 
+ON e1.id=e2.managerId 
+GROUP BY e1.id
+HAVING COUNT(e2.managerID)>4; 
