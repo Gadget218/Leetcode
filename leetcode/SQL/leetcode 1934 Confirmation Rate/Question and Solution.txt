@@ -113,3 +113,10 @@ Explanation:
 4. The IFNULL function is used to handle the case where a user did not request any confirmation messages. If the confirmation rate is NULL (no corresponding entry in the CTE), it replaces it with 0.
 
 5. The query returns the user_id and the corresponding confirmation rate for each user.
+
+
+--OR--
+
+SELECT s.user_id, ROUND(SUM(CASE WHEN c.action='confirmed' THEN 1 ELSE 0 END)/COUNT(*),2) AS confirmation_rate
+FROM Signups s LEFT JOIN Confirmations c ON s.user_id=c.user_id
+GROUP BY s.user_id;
