@@ -1,0 +1,25 @@
+from typing import List
+
+class Solution:
+    def numOfSubarrays(self, arr: List[int]) -> int:
+        pref_sum = 0
+        odd_cnt = 0
+        even_cnt = 1  # To handle cases where prefix sum itself is odd
+        res = 0
+        MOD = 10**9 + 7
+
+        for num in arr:
+            pref_sum += num
+
+            if pref_sum % 2:  # Odd prefix sum
+                res = (res + even_cnt) % MOD
+                odd_cnt += 1
+            else:  # Even prefix sum
+                res = (res + odd_cnt) % MOD
+                even_cnt += 1
+                
+        return res
+
+T:O(n)
+M:(1)
+#even+odd=odd
