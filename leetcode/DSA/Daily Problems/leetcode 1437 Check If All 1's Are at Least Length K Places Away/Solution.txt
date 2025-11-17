@@ -16,4 +16,20 @@ once it starts it will set space to 0 then start counting space.
 001001
 Here once it reaches 1 then it will set space to 0 and then start counting space between 1s.
 
+
 It is O(n) time complexity.
+--OR--
+using index:
+
+class Solution:
+    def kLengthApart(self, nums: List[int], k: int) -> bool:
+        idx = -1
+
+        for i in range(len(nums)):
+            if nums[i] == 1:
+                if idx != -1 and i - idx - 1 < k:
+                    return False
+
+                idx = i
+
+        return True
