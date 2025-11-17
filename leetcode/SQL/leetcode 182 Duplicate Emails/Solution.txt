@@ -1,0 +1,11 @@
+# Write your MySQL query statement below
+SELECT email
+FROM person
+GROUP BY email
+HAVING count(id) > 1 
+
+--OR--
+
+SELECT Email 
+from (SELECT email AS Email, COUNT(*) AS cnt FROM Person GROUP BY email) AS t1
+WHERE cnt >1;
