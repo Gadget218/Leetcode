@@ -1,0 +1,17 @@
+class Solution:
+    def numSub(self, s: str) -> int:
+        MOD = (10**9)+7
+        count = 0
+        consecutive = 0
+        for i in s:
+            if i=='1':
+                count+=1
+                consecutive = (consecutive+count) % MOD
+            else:
+                count=0
+        return consecutive         
+
+T:O(n)
+Explanation:
+0110111
+1+2=3 then 1+2+3=6,total is 9. since in 11, there are two 1s and one 1. In, 111, there are three 1s, two 11s, and one 111. If it was 1111, since fours 1s then 1+2+3+4.
