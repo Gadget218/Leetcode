@@ -1,0 +1,25 @@
+class Solution:
+    def isOneBitCharacter(self, bits: List[int]) -> bool:
+        i=0
+        while i in range(len(bits)-1):
+            if bits[i]==1:
+                i+=2
+            else:
+                i+=1
+        
+        if i==len(bits):
+            return False
+        else:
+            return True
+
+T:O(n)
+
+Explanation:
+When the pointer is at value 1 it takes two steps, otherwise only one step forward. The loop ends when the pointer i value is greater than (length-1), that means means reaches the final index of list or if it is out of bound of the list.
+
+The reason why it takes two steps when it encounters a 1 is because two bits are 10 and 11 and they both start with 1, so we take two steps, one bit is only 0, so only one step if we encounter it.
+
+Examples:
+[1,0,0], here the pointer i will land  in the final position of the list, index 2 which is not equal to 3(length of the list).
+
+[1,1,1,0], here the pointer i value will be 4 which the same as the length of the list. 
