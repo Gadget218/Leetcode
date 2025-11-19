@@ -1,0 +1,12 @@
+class Solution:
+    def findFinalValue(self, nums: List[int], original: int) -> int:
+        num = set(nums)
+        res = original
+        while res in num:
+            res*=2
+        return res
+
+Explanation:
+Hash the input list and just look up the new value of res each times it gets multiplied by 2.
+T: O(n), since converting to set is O(n) and looking up the values is constant time.
+The set num stores all elements from nums so O(n) space.
