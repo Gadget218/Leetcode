@@ -1,0 +1,10 @@
+class Solution:
+    def minimumOperations(self, nums: List[int]) -> int:
+        count=0
+        for i in nums:
+            if i%3!=0:
+                count+=1
+        return count
+
+Explanation:
+If the number in list is not divisible by 3 then we have to either add or subtract 1 to make it divisible by 3. Hence, we simply count the number of elements not divisible by 3 in the list.
