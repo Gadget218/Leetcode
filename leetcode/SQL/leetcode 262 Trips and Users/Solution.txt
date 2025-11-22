@@ -1,0 +1,33 @@
+-- Step 1: Filter Trips to only include those where BOTH the Client and the Driver are NOT banned.
+-- We assume the 'banned' column stores 'Yes' or 'No'. If it stores 1/0, change 'No' to 0.
+WITH UnbannedUsers AS (
+    SELECT users_id FROM Users WHERE banned = 'No'
+),
+FilteredTrips AS (
+    SELECT
+        T.request_at,
+        T.status
+    FROM Trips T
+    WHERE
+        T.client_id IN (SELECT users_id FROM UnbannedUsers)
+        AND T.driver_id IN (SELECT users_id FROM UnbannedUsers)
+        -- We usually need a specific date range for this problem, often:
+        AND T.request_at BETWEEN '2013-10-01' AND '2013-10-03'
+)
+
+-- Step 2: Calculate the Cancellation Rate per day.
+-- The rate is (Total Cancelled Trips) / (Total Trips).
+-- We multiply the numerator by 1.0 to force floating-point division (so we get a decimal/rate).
+SELECT
+    request_at AS Day,
+    -- The numerator sums all trips where the status starts with 'cancelled_'
+    ROUND(
+        SUM(CASE
+            WHEN status LIKE 'cancelled_%' THEN 1
+            ELSE 0
+        END) * 1.0 / COUNT(*),
+        2 -- Round the result to 2 decimal places for a clear rate
+    ) AS 'Cancellation Rate'
+FROM FilteredTrips
+GROUP BY request_at
+ORDER BY request_at;
