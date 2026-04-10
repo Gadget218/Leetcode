@@ -1,0 +1,12 @@
+Time Complexity: O(n) for all three
+All three do at most one pass through the string — the two-pointer solutions potentially do less work since they meet in the middle and skip non-vowels early.
+
+Space Complexity
+The list(s) conversion is unavoidable since Python strings are immutable — you need a mutable structure to swap. So all three are O(n) auxiliary space regardless of whether you count the output.
+
+Storage                Size
+l = list(s)            O(n) — always needed
+pos (solution 1 only)  O(n) — extra overhead
+output "".join(l)      O(n) — required output
+
+So strictly speaking, O(n) auxiliary space for all three, not O(1).

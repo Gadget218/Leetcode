@@ -1,0 +1,148 @@
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        words = s.split()
+        ans = ""
+        for i in range(len(words)):
+            ans += (words[~i] +  " ") 
+        return ans[:len(ans)-1]
+
+
+
+     
+1. Splitting the string
+words = s.split()
+
+
+split() without arguments:
+
+Removes leading/trailing spaces
+
+Removes extra spaces between words
+
+Example:
+
+s = "  hello   world  "
+
+
+Result:
+
+words = ['hello', 'world']
+
+2. Creating an empty output string
+ans = ""
+
+
+This will store the reversed sentence.
+
+3. Loop through the words
+for i in range(len(words)):
+
+
+If:
+
+words = ['the','sky','is','blue']
+
+
+then:
+
+i = 0
+i = 1
+i = 2
+i = 3
+
+4. The interesting part: ~i
+words[~i]
+
+
+~ is the bitwise NOT operator.
+
+In Python:
+
+~i = -(i+1)
+
+
+Example:
+
+i	~i	index
+0	-1	last element
+1	-2	second last
+2	-3	third last
+
+So this accesses the list from the end.
+
+Example:
+
+words = ['the','sky','is','blue']
+
+
+Loop execution:
+
+i	~i	words[~i]
+0	-1	blue
+1	-2	is
+2	-3	sky
+3	-4	the
+
+So it effectively reverses the list.
+
+5. Appending words
+ans += (words[~i] + " ")
+
+
+Result after loop:
+
+"blue is sky the "
+
+
+Notice the extra space at the end.
+
+6. Removing the last space
+return ans[:len(ans)-1]
+
+
+This removes the final space.
+
+Example:
+
+"blue is sky the "
+
+
+becomes
+
+"blue is sky the"
+
+Final Output Example
+
+Input:
+
+s = "the sky is blue"
+
+
+Output:
+
+"blue is sky the"
+
+Why this solution is unusual
+
+Normally people write:
+
+" ".join(words[::-1])
+
+
+But this solution shows a clever Python trick using ~i for reverse indexing.
+
+Complexity
+
+Time: O(n)
+Space: O(n)
+
+Small improvement
+
+Instead of:
+
+return ans[:len(ans)-1]
+
+
+You could write:
+
+return ans.rstrip()

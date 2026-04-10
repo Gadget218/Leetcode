@@ -1,0 +1,33 @@
+from collections import Counter
+class Solution:
+    def findDifference(self, nums1: List[int], nums2: List[int]) -> List[List[int]]:
+        h1=Counter(nums1)
+        h2=Counter(nums2)
+        l1=[]
+        l2=[]
+        for i in h1.keys():
+            if i not in h2:
+                l1.append(i)
+        for j in h2.keys():
+            if j not in h1:
+                l2.append(j)
+        return [l1,l2]
+        
+Complexity
+Time: O(m + n)
+
+Operation                 Cost
+Counter(nums1)            O(m)
+Counter(nums2)            O(n)
+loop over h1.keys() 	  O(m)
+loop over h2.keys()  	  O(n)
+i not in h2 per iteration O(1) 
+Total			  O(m + n)
+
+
+Space: O(m + n)
+
+Storage		Size
+h1		O(m)
+h2		O(n)
+l1, l2		O(m + n) worst case

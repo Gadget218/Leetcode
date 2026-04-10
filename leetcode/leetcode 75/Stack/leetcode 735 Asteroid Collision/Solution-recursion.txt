@@ -1,0 +1,26 @@
+class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        st = []
+        
+        def handle_collision(current):
+            # Base case: if stack is empty or no collision possible, just add it
+            if not st or not (st[-1] > 0 and current < 0):
+                st.append(current)
+                return
+            
+            top = st[-1]
+            if abs(top) < abs(current):
+                st.pop()
+                # Recursively check the next element in the stack
+                handle_collision(current)
+            elif abs(top) == abs(current):
+                st.pop()
+                # Both are destroyed; no further recursion needed
+            else:
+                # Top is bigger; current is destroyed, do nothing
+                pass
+
+        for a in asteroids:
+            handle_collision(a)
+            
+        return st

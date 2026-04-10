@@ -1,0 +1,22 @@
+class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        st = []
+        for i in asteroids:
+            # Only collide if top of stack is moving RIGHT (+) 
+            # and current asteroid is moving LEFT (-)
+            while st and i < 0 < st[-1]:
+                if abs(st[-1]) < abs(i):
+                    st.pop()
+                    continue # Check next asteroid in stack
+                elif abs(st[-1]) == abs(i):
+                    st.pop()
+                # If we reach here, the current asteroid 'i' is destroyed
+                break 
+            else:
+                # This 'else' belongs to the 'while'. 
+                # It executes only if the loop finished without 'break'
+                # (meaning asteroid 'i' survived all collisions)
+                st.append(i)
+        return st
+#T O(N)
+#S O(N)

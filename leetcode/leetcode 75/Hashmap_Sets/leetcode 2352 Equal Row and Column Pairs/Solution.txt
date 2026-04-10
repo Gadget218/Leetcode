@@ -1,0 +1,40 @@
+class Solution:
+    def equalPairs(self, grid: List[List[int]]) -> int:
+        row_count=defaultdict(int)
+        count=0
+        for row in grid:
+            row_count[tuple(row)]+=1 #adding count of rows(rows as tuples)
+        for column in zip(*grid): #to get transpose rows or columns as tuples by zip
+            count+=row_count[column] #value of the row storedin dictionary is added
+        return count
+
+
+Explanation:
+
+The zip(*grid) trick — how it works
+grid = [[1,2],[3,4]]
+
+zip(*grid) = zip([1,2], [3,4])
+           → (1,3), (2,4)  ← these are the columns 
+*grid unpacks the rows as separate arguments to zip, which then pulls one element from each row — effectively transposing the grid.
+
+equalPairs - Complexity Analysis
+==================================
+
+Time Complexity: O(n²)
+-----------------------
+Operation                                       Cost
+---------                                       ----
+tuple(row) for each row                         O(n) per row x n rows = O(n²)
+row_count[tuple(row)] += 1 (hashing tuple)      O(n) per row x n rows = O(n²)
+zip(*grid) — transposing                        O(n²)
+loop over columns + hash lookup per column      O(n) per column x n columns = O(n²)
+Total                                           O(n²)
+
+
+Space Complexity: O(n²)
+------------------------
+Storage                         Size
+-------                         ----
+row_count dictionary            up to n keys, each a tuple of length n -> O(n²)
+zip(*grid)                      O(n) at a time (lazy iterator)

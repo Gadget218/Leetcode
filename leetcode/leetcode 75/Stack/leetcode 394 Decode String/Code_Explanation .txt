@@ -1,0 +1,38 @@
+Explanation (How it works)
+
+The algorithm uses a stack to decode encoded strings like "3[a2[c]]".
+
+1. Traverse the string
+
+Go character by character.
+Push everything onto the stack until you encounter ].
+
+2. When you see ]
+
+Start building the substring inside the most recent [...].
+Pop characters until you hit '['.
+
+3. Extract the number
+
+After removing '[', the digits before it represent how many times to repeat the substring.
+Handle multi-digit numbers by building the number in reverse.
+
+4. Repeat and push back
+
+Multiply the extracted substring by the number.
+Push the result back onto the stack.
+
+5. Final result
+
+After processing the whole string, the stack contains the decoded parts.
+Join them to get the final answer.
+🔁 Example
+
+Input: "2[ab3[c]]"
+
+Inner part: "3[c]" → "ccc"
+Outer part: "abccc" repeated 2 times
+→ "abcccabccc"
+⏱️ Complexity
+Time: O(n)
+Space: O(n)

@@ -1,0 +1,16 @@
+from collections import Counter
+class Solution:
+    def closeStrings(self, word1: str, word2: str) -> bool:
+
+        if len(word1)!=len(word2):
+            return False
+        h1=Counter(word1)
+        h2=Counter(word2)
+        return sorted(h1.values()) == sorted(h2.values()) and set(word1) == set(word2)
+
+
+Time   O(n log n) — due to sorted()
+Space  O(k) — where k = unique characters (at most 26)
+
+Why sorted() is O(n log n)
+Python's sorted() uses Timsort, which is a hybrid of merge sort and insertion sort. The O(n log n) comes from the merge sort component — merging sorted runs takes O(n log n) in the general case.

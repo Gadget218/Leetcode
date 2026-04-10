@@ -1,0 +1,30 @@
+class Solution:
+    def gcdOfStrings(self, str1: str, str2: str) -> str:
+        
+        len1, len2 = len(str1), len(str2)
+
+        def isDivision(l):
+            if len1 % l or len2 % l:
+                return False
+            f1, f2 = len1//l, len2//l
+            return str1[:l]*f1 == str1 and str1[:l]*f2==str2
+        
+        for l in range(min(len1, len2),0,-1):
+            if isDivision(l):
+                return str1[:l]
+        return ""
+
+        
+Explanation of time and space complexity:
+Time Complexity: O(min(m,n) · (m+n))
+Outer loop: runs min(m,n) times (where m = len1, n = len2)
+Inside isDivision(l), the dominant cost is the string operations:
+
+str1[:l] * f1 == str1 — constructs a string of length m and compares it → O(m)
+str1[:l] * f2 == str2 — constructs a string of length n and compares it → O(n)
+
+So each call to isDivision costs O(m+n), and in the worst case (no valid division found until the end), it's called min(m,n) times.
+Total: O(min(m,n) · (m+n))
+
+Space Complexity: O(m+n)
+Inside isDivision, the expression str1[:l] * f1 creates a new string of length m, and str1[:l] * f2 creates a new string of length n. These are temporary allocations on each call, but since they don't accumulate, the peak memory at any point is O(m+n).

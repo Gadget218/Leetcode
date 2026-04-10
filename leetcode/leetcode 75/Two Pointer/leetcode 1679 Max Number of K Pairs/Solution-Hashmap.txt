@@ -1,0 +1,37 @@
+from collections import Counter
+
+class Solution:
+    def maxOperations(self, nums, k):
+        count = Counter(nums)
+        op = 0
+        
+        for num in count:
+            target = k - num
+            
+            if num > target:
+                continue
+            
+            if num == target:
+                op += count[num] // 2
+            else:
+                op += min(count[num], count.get(target, 0))
+        
+        return op
+
+Time Complexity
+
+Building Counter: O(n)
+
+Iterating keys: O(n) (worst case all unique)
+
+Total:
+
+O(n)
+
+Space Complexity
+
+Counter stores frequencies → up to n elements
+
+Total:
+
+O(n)

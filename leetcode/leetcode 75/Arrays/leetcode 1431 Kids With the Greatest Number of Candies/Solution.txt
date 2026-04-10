@@ -1,0 +1,25 @@
+class Solution:
+    def kidsWithCandies(self, candies: List[int], extraCandies: int) -> List[bool]:
+        max_val = max(candies)
+        output = []
+        for i in candies:
+            if i+extraCandies>=max_val:
+                output.append(True)
+            else:
+                output.append(False)
+        return output
+
+Time: O(n)
+
+max(candies) → one full pass → O(n)
+the for loop → another full pass → O(n)
+Total: O(n) + O(n) = O(n)
+
+Space: O(n)
+
+output list grows with one boolean per element → O(n)
+max_val is just a single integer → O(1)
+
+
+
+Note: the output list is usually excluded from space complexity analysis since it's a required output, not auxiliary space. If you exclude it, the space complexity is O(1) — you're only storing max_val.

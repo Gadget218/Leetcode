@@ -1,0 +1,51 @@
+class Solution:
+    def gcdOfStrings(self, str1: str, str2: str) -> str:
+        if str1+str2 != str2+str1:
+            return ""
+        # Find the GCD of the lengths of str1 and str2
+        gcd_len = gcd(len(str1), len(str2))
+        
+        # Candidate for GCD string
+        candidate = str1[:gcd_len]
+
+        return candidate
+
+If a string t divides both str1 and str2, then both strings are just repetitions of t. This means concatenating them in either order should give the same result:
+str1 + str2 == str2 + str1
+Example:
+str1 = "ABCABC",  str2 = "ABC"
+"ABCABCABC" == "ABCABCABC" ✓  → a divisor exists
+
+str1 = "AABAA",  str2 = "AAB"  
+"AABAААAB" != "ААBAAABAA" ✗  → no divisor exists
+This check alone proves a common divisor exists — but doesn't tell you what it is.
+
+Why GCD of lengths?
+If t divides str1 (length m) and str2 (length n), then len(t) must divide both m and n. The largest such divisor is gcd(m, n), which corresponds to the longest possible dividing string.
+str1 = "ABCABCABCABC"  → len = 12
+str2 = "ABCABC"        → len = 6
+gcd(12, 6) = 6  →  candidate = str1[:6] = "ABCABC"... 
+
+wait, that's wrong — let's try:
+str2 = "ABC"           → len = 3
+gcd(12, 3) = 3  →  candidate = str1[:3] = "ABC" ✓
+
+Why no verification needed?
+Once the concatenation check passes, you've already proven a divisor exists. And since any valid divisor's length must divide gcd(m,n), the prefix of that exact length is guaranteed to work — no further check needed.
+
+Step-by-step Flow
+str1 = "ABABAB", str2 = "ABAB"
+
+1. "ABABABABAB" == "ABABABABAB" ✓  (divisor exists)
+
+2. gcd(6, 4) = 2
+
+3. candidate = str1[:2] = "AB"
+
+4. return "AB"  ✓
+
+Complexity
+TimeO(m+n) — dominated by the concatenation check
+SpaceO(m+n) — for the two concatenated strings 
+        
+     
